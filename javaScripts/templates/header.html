@@ -1,0 +1,146 @@
+<div class="navbar navbar-default">
+    <script type="text/javascript">
+        try{ace.settings.check('navbar' , 'fixed')}catch(e){}
+    </script>
+
+    <div class="navbar-container" id="navbar-container">
+        <div class="navbar-header pull-left">
+            <a href="#" class="navbar-brand">
+                <small>
+                    <i class="glyphicon glyphicon-leaf"></i>
+                    Ace Admin
+                </small>
+            </a><!-- /.brand -->
+        </div><!-- /.navbar-header -->
+
+        <div class="navbar-header pull-right" role="navigation">
+            <ul class="nav ace-nav">
+                <li class="grey">
+                    <a data-toggle="dropdown" class="dropdown-toggle" href="#">
+                    <i class="glyphicon glyphicon-tasks"></i>
+                    <span class="badge badge-grey">{{tasks.length}}</span>
+                </a>
+                    <!-- taskList -->
+                    <ul class="pull-right dropdown-navbar dropdown-menu dropdown-caret dropdown-close">
+
+                        <li class="dropdown-header">
+                            <i class="glyphicon glyphicon-ok"></i>
+                            {{tasks.length}} Tasks to complete
+                        </li>
+                        <li ng-repeat="task in tasks">
+                            <a ng-href="{{task.url}}">
+                                <div class="clearfix">
+                                    <span class="pull-left">{{task.name}}</span>
+                                    <span class="pull-right">{{task.count}}</span>
+                                </div>
+                                <div class="progress progress-mini ">
+                                    <div style="width:{{task.count}}" class="progress-bar "></div>
+                                </div>
+                            </a>
+                        </li>
+                        <li ng-hide="taskShow">
+                            <a href="{{allTasksUrl}}">
+                                See tasks with details
+                                <i class="glyphicon glyphicon-arrow-right"></i>
+                            </a>
+                        </li>
+                    </ul>
+                    <!-- /taskList -->
+                </li>
+                <!--notification-->
+                <li class="purple">
+                    <a data-toggle="dropdown" class="dropdown-toggle" href="#">
+                        <i class="glyphicon glyphicon-bell"></i>
+                        <span class="badge badge-important">{{notifications.length}}</span>
+                    </a>
+
+                    <ul class="pull-right dropdown-navbar navbar-pink dropdown-menu dropdown-caret dropdown-close">
+                        <li class="dropdown-header">
+                            <i class="glyphicon glyphicon-warning-sign"></i>
+                            {{notifications.length}} Notifications
+                        </li>
+                        <li ng-repeat="notification in notifications">
+                            <a ng-href="{{notification.url}}">
+                                <div class="clearfix">
+                                    <span class="pull-left">
+                                        <i class="btn btn-xs no-hover btn-pink glyphicon glyphicon-{{notification.iconCls}}"></i>
+                                        {{notification.title}}
+                                    </span>
+                                    <span class="pull-right badge badge-info">{{notification.count}}</span>
+                                </div>
+                            </a>
+                        </li>
+                        <li ng-hide="notificationShow">
+                            <a ng-href="{{allNotificationsUrl}}">
+                                See all notifications
+                                <i class="glyphicon glyphicon-arrow-right"></i>
+                            </a>
+                        </li>
+                    </ul>
+                </li>
+                <!-- /notification-->
+                <!-- message-->
+                <li class="green">
+                    <a data-toggle="dropdown" class="dropdown-toggle" href="#">
+                        <i class="glyphicon glyphicon-envelope glyphicon glyphicon-animated-vertical"></i>
+                        <span class="badge badge-success">{{messages.length}}</span>
+                    </a>
+
+                    <ul class="pull-right dropdown-navbar dropdown-menu dropdown-caret dropdown-close">
+                        <li class="dropdown-header">
+                            <i class="glyphicon glyphicon-envelope-alt"></i>
+                            {{messages.length}} Messages
+                        </li>
+
+                        <li ng-repeat="message in messages">
+                            <a href="{{message.url}}">
+                                <img ng-src="{{message.headUrl}}" class="msg-photo"/>
+                                    <span class="msg-body">
+                                        <span class="msg-title">
+                                            <span class="blue">{{message.name}}:</span>
+                                            {{message.content}}
+                                        </span>
+
+                                        <span class="msg-time">
+                                            <i class="glyphicon glyphicon-time"></i>
+                                            <span>{{message.createDate}}</span>
+                                        </span>
+                                    </span>
+                            </a>
+                        </li>
+
+                        <li ng-hide="messagesShow">
+                            <a href="{{allMessagesUrl}}">
+                                See all messages
+                                <i class="glyphicon glyphicon-arrow-right"></i>
+                            </a>
+                        </li>
+                    </ul>
+                </li>
+                <!-- /message-->
+                <!--user-->
+                <li class="light-blue">
+                    <a data-toggle="dropdown" href="#" class="dropdown-toggle">
+                        <img class="nav-user-photo" ng-src="images/avatars/user.jpg" alt="Jason's Photo" />
+                        <span class="user-info">
+                            <small>Welcome,</small>
+                            {{currUserName}}
+                        </span>
+
+                        <i class="glyphicon glyphicon-chevron-down"></i>
+                    </a>
+
+                    <ul class="user-menu pull-right dropdown-menu dropdown-yellow dropdown-caret dropdown-close">
+                        <li ng-repeat="userMenu in userMenus">
+                            <a href="{{userMenu.url}}">
+                                <i class="glyphicon glyphicon-{{userMenu.iconCls}}"></i>
+                                {{userMenu.name}}
+                            </a>
+                        </li>
+                    </ul>
+                </li>
+                <!--user-->
+            </ul><!-- /.ace-nav -->
+        </div><!-- /.navbar-header -->
+    </div>
+</div>

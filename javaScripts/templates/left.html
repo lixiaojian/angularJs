@@ -1,0 +1,68 @@
+<script type="text/javascript">
+    try{ace.settings.check('sidebar' , 'fixed')}catch(e){}
+</script>
+
+<div class="sidebar-shortcuts" id="sidebar-shortcuts">
+    <div class="sidebar-shortcuts-large" id="sidebar-shortcuts-large">
+        <a ng-repeat="shortcut in shortcuts" class="btn btn-{{shortcut.style}}" style="margin: 0 2px">
+            <i class="glyphicon glyphicon-{{shortcut.iconCls}}"></i>
+        </a>
+    </div>
+    <div class="sidebar-shortcuts-mini" id="sidebar-shortcuts-mini">
+        <span ng-repeat="shortcut in shortcuts" class="btn btn-{{shortcut.style}}"></span>
+    </div>
+</div>
+<!-- #sidebar-shortcuts -->
+
+<ul class="nav nav-list">
+    <!--一级菜单-->
+    <li ng-repeat="menu in leftMenus"  class="{{menu.isActive?'active':''}}">
+        <a ng-href="{{menu.url}}" ng-class="{'dropdown-toggle':menu.hasChildren}" ng-click="addActive(menu)">
+            <i class="glyphicon glyphicon-{{menu.iconCls}}"></i>
+            <span class="menu-text"> {{menu.name}}
+                <span ng-show="menu.hasMark" class="badge badge-transparent tooltip-error" title="{{menu.markTitle}}">
+                    <i class="glyphicon glyphicon-{{menu.markIcon}} red bigger-130"></i>
+                </span>
+                <span ng-show="menu.hasCount" class="badge badge-primary ">{{menu.count}}</span>
+            </span>
+            <i ng-show="menu.hasChildren" class="arrow glyphicon glyphicon-chevron-down"></i>
+        </a>
+        <!--二级菜单-->
+        <ul ng-show="menu.hasChildren" class="submenu hide">
+            <li ng-repeat="child in menu.children"  class="{{child.isActive?'active':''}}">
+                <a ng-href="{{child.url}}" ng-class="{'dropdown-toggle':child.hasChildren}" ng-click="addActive(child,menu)">
+                    <i class="glyphicon glyphicon-{{child.iconCls}}"></i>
+                    <span class="menu-text"> {{child.name}}</span>
+                    <i ng-show="child.hasChildren" class="arrow glyphicon glyphicon-chevron-down"></i>
+                </a>
+                <!--三级菜单-->
+                <ul ng-show="child.hasChildren" class="submenu hide">
+                    <li ng-repeat="ch in child.children" class="{{ch.isActive?'active':''}}">
+                        <a ng-href="{{ch.url}}" ng-class="{'dropdown-toggle':ch.hasChildren}" ng-click="addActive(ch,menu,child)">
+                            <i class="glyphicon glyphicon-{{ch.iconCls}}"></i>
+                            <span class="menu-text"> {{ch.name}} </span>
+                            <i ng-show="ch.hasChildren" class="arrow glyphicon glyphicon-chevron-down"></i>
+                        </a>
+                        <!--四级菜单-->
+                        <ul ng-show="ch.hasChildren" class="submenu hide">
+                            <li ng-repeat="c in ch.children" class="{{c.isActive?'active':''}}">
+                                <a ng-href="{{c.url}}" ng-click="addActive(c,menu,child,ch)">
+                                    <i class="glyphicon glyphicon-{{c.iconCls}}"></i>
+                                    <span class="menu-text"> {{c.name}} </span>
+                                </a>
+                            </li>
+                        </ul>
+                    </li>
+                </ul>
+            </li>
+        </ul>
+    </li>
+</ul><!-- /.nav-list -->
+
+<div class="sidebar-collapse" id="sidebar-collapse">
+    <i class="glyphicon glyphicon-resize-horizontal" data-icon1="glyphicon glyphicon-resize-horizontal" data-icon2="glyphicon glyphicon-resize-horizontal"></i>
+</div>
+
+<script type="text/javascript">
+    try{ace.settings.check('sidebar' , 'collapsed')}catch(e){}
+</script>
