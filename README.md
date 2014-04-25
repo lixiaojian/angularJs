@@ -1,0 +1,4 @@
+angularJs
+=========
+
+requireJsAngulars集成
